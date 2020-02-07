@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Winnie the Flu</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+    </head>
+    
+    <body>
+        <h1>Winnie the Flu</h1>
+        <p>Check your temperature to assess your risk of having 2019 Novel Coronavirus (2019-nCoV)</p>
+        <form method="post">
+            <p>Temperature scale:</p>
+            <select name="scale">
+                <option value="c">Celsius</option>
+                <option value="f">Fahrenheit</option>
+            </select>
+            <input type="text" name="temp" id="temp" placeholder="Temperature" required>
+            <input type="submit" class="submit">
+            {{ temp }}{{ scale }}
+            {{ risk }}
+        </form>
+    </body>
+</html>
