@@ -5,22 +5,43 @@
         <title>Winnie the Flu</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
     </head>
     
     <body>
-        <h1>Winnie the Flu</h1>
-        <p>Check your temperature to assess your risk of having 2019 Novel Coronavirus (2019-nCoV)</p>
-        <form method="post">
-            <p>Temperature scale:</p>
-            <select name="scale">
-                <option value="c">Celsius</option>
-                <option value="f">Fahrenheit</option>
-            </select>
-            <input type="text" name="temp" id="temp" placeholder="Temperature" required>
-            <input type="submit" class="submit">
-            {{ temp }}{{ scale }}
-            {{ risk }}
-        </form>
+        <div class="header">
+            <h1>Winnie the Flu</h1>
+            <p>Check your temperature to assess your risk of having 2019 Novel Coronavirus (2019-nCoV)</p>
+            <form name="tempcheck" method="post" onsubmit="return checkInp()">
+                <p>Temperature scale:</p>
+                <select name="scale">
+                    <option value="C">Celsius</option>
+                    <option value="F">Fahrenheit</option>
+                </select>
+                <br>
+                
+                <p>Temperature:</p>
+                <input type="text" name="temp" id="temp" placeholder="Temperature" required>
+                <br><br>
+
+                <input type="submit" class="submit">
+                <br>
+            </form>
+            
+            {% if not valid %}
+            <p>Not a valid temperature</p>
+            
+            {% elif risk %}
+            <div class="result">
+                <p>
+                    {{ temp }}{{ scale }}
+                    {{ risk }} risk
+                </p>
+            </div>
+
+            {% endif %}
+            
+        </div>
     </body>
 </html>
